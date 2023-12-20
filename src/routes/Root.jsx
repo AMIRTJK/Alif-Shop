@@ -19,7 +19,7 @@ import facebook from "../assets/facebook.svg";
 import instagram from "../assets/instagram.svg";
 import telegram from "../assets/telegram.svg";
 
-const Layout = () => {
+const Root = () => {
   const [menu, setMenu] = useState(true);
   const [showCategory, setShowCategory] = useState(false);
   return (
@@ -187,4 +187,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default Root;
