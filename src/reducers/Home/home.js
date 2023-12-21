@@ -6,12 +6,21 @@ const initialState = {
   loadingProducts: true,
   dataGetCategories: [],
   dataGetProducts: [],
+  locationModal: false,
+  signModal: false,
 };
 
 export const homeSlice = createSlice({
   name: "home",
   initialState,
-  reducers: {},
+  reducers: {
+    setLocationModal: (state, action) => {
+      state.locationModal = action.payload;
+    },
+    setSignModal: (state, action) => {
+      state.signModal = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     // Get Categories
     builder.addCase(getCategories.pending, (state, action) => {
@@ -38,6 +47,6 @@ export const homeSlice = createSlice({
   },
 });
 
-export const {} = homeSlice.actions;
+export const { setLocationModal, setSignModal } = homeSlice.actions;
 
 export default homeSlice.reducer;

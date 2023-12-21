@@ -13,6 +13,10 @@
   padding: 0px 32px;
 }
 
+button.active {
+  background-color: #ffbe1f;
+}
+
 .main-title {
   font-size: 24px;
   font-weight: bold;
