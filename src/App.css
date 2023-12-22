@@ -55,17 +55,47 @@ button.active {
   object-fit: cover;
 }
 
-.mySwiper2 .swiper-button-prev {
-  top: 0 !important;
-  left: 90% !important;
+.mySwiper2 .swiper-button-prev::after {
+  content: url("./assets/icons8-chevron-left-30.png");
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
   background-color: #ffbe1f;
-  padding: 30px;
+  padding: 20px;
+  border-radius: 50px;
+  opacity: 100% !important;
+  width: 25px !important;
+  height: 25px !important;
+  bottom: 450%;
+  left: 1010px;
+}
+
+.mySwiper2 .swiper-button-next::after {
+  content: url("./assets/icons8-chevron-right-30.png");
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  bottom: 450%;
+  background-color: #ffbe1f;
+  padding: 20px;
   border-radius: 50px;
   opacity: 100% !important;
   width: 25px !important;
   height: 25px !important;
 }
 
-.mySwiper2 .swiper-button-next {
-  top: 0 !important;
+.swiper-pagination {
+  bottom: 0 !important;
+}
+
+.swiper-pagination-bullet {
+  width: 30px !important;
+  height: 3px !important;
+  border-radius: 10px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffbe1f !important;
 }

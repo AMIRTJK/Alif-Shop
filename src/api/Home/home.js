@@ -24,9 +24,9 @@ export const getProducts = createAsyncThunk(
   async function (_, rejectWithValue) {
     try {
       const { data } = await axios.get(
-        "http://65.108.148.136:8072/SubCategory/get-sub-category"
+        "http://65.108.148.136:8072/Product/get-products"
       );
-      return data.data;
+      return data.data.products;
     } catch (error) {
       return rejectWithValue(error);
     }

@@ -36,71 +36,73 @@ const Root = () => {
   return (
     <>
       <main>
-        <header className="sticky z-40 w-full py-[24px] border-b-[1px] mb-[24px]">
-          <nav className="menu-category max-w-[1192px] px-[32px] gap-[10px] mx-auto flex items-center justify-between">
-            <Link to="/">
-              <LogoHeader />
-            </Link>
-            <button
-              onClick={() => {
-                setMenu(!menu);
-                setShowCategory(!showCategory);
-              }}
-              className="flex items-center gap-[2.5px] bg-[#ffbe1f] py-[12px] px-[16px] rounded-lg hover:bg-[#ffc01f8a] transition-all duration-100"
-            >
-              <Menu menu={menu} />
-              <CloseMenu menu={menu} />
-              <p className="text-[14px] font-[500]">Каталог товаров</p>
-            </button>
-            <form className="w-[50%] hidden md:flex">
-              <input
-                type="text"
-                placeholder="название товара или артикул"
-                className="w-full border-[2px] border-r-[0px] border-gray-300 py-[10px] px-[16px] rounded-md rounded-br-none rounded-tr-none focus:outline-none focus:border-[#ffbe1f] text-[15px] font-[600]"
-              />
-              <button className="bg-[#ffbe1f] rounded-md rounded-bl-none rounded-tl-none px-[16px]">
-                <Search />
-              </button>
-            </form>
-            <div className="panel-nav items-center justify-between gap-[15px] hidden md:flex">
+        <div className="main-header bg-[#fff] w-full h-[30px] mb-[100px]">
+          <header className="fixed bg-[#fff] z-40 w-full py-[24px] border-b-[1px] mb-[24px]">
+            <nav className="menu-category max-w-[1192px] px-[32px] gap-[10px] mx-auto flex items-center justify-between">
+              <Link to="/">
+                <LogoHeader />
+              </Link>
               <button
                 onClick={() => {
-                  dispatch(setLocationModal(true));
+                  setMenu(!menu);
+                  setShowCategory(!showCategory);
                 }}
-                className="item flex flex-col items-center gap-[2px]"
+                className="flex items-center gap-[2.5px] bg-[#ffbe1f] py-[12px] px-[16px] rounded-lg hover:bg-[#ffc01f8a] transition-all duration-100"
               >
-                <Location />
-                <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
-                  Душанбе
-                </p>
+                <Menu menu={menu} />
+                <CloseMenu menu={menu} />
+                <p className="text-[14px] font-[600]">Каталог товаров</p>
               </button>
-              {/* Modal Location */}
-              <LocationModal />
-              <button
-                onClick={() => {
-                  dispatch(setSignModal(true));
-                }}
-                className="item flex flex-col items-center gap-[2px]"
-              >
-                <Sign />
-                <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
-                  Войти
-                </p>
-              </button>
-              {/* Modal Sign */}
-              <SignModal />
-              <Link to="cart">
-                <button className="item flex flex-col items-center gap-[2px]">
-                  <Basket />
+              <form className="w-[50%] hidden md:flex">
+                <input
+                  type="text"
+                  placeholder="название товара или артикул"
+                  className="w-full border-[2px] border-r-[0px] border-gray-300 py-[10px] px-[16px] rounded-md rounded-br-none rounded-tr-none focus:outline-none focus:border-[#ffbe1f] text-[15px] font-[600]"
+                />
+                <button className="bg-[#ffbe1f] rounded-md rounded-bl-none rounded-tl-none px-[16px]">
+                  <Search />
+                </button>
+              </form>
+              <div className="panel-nav items-center justify-between gap-[15px] hidden md:flex">
+                <button
+                  onClick={() => {
+                    dispatch(setLocationModal(true));
+                  }}
+                  className="item flex flex-col items-center gap-[2px]"
+                >
+                  <Location />
                   <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
-                    Корзина
+                    Душанбе
                   </p>
                 </button>
-              </Link>
-            </div>
-          </nav>
-          <Category modal={showCategory} />
-        </header>
+                {/* Modal Location */}
+                <LocationModal />
+                <button
+                  onClick={() => {
+                    dispatch(setSignModal(true));
+                  }}
+                  className="item flex flex-col items-center gap-[2px]"
+                >
+                  <Sign />
+                  <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
+                    Войти
+                  </p>
+                </button>
+                {/* Modal Sign */}
+                <SignModal />
+                <Link to="cart">
+                  <button className="item flex flex-col items-center gap-[2px]">
+                    <Basket />
+                    <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
+                      Корзина
+                    </p>
+                  </button>
+                </Link>
+              </div>
+            </nav>
+            <Category modal={showCategory} />
+          </header>
+        </div>
         <Outlet />
         <footer className="bg-[#222222] py-[50px]">
           <div className="footer-top max-w-[1192px] border-b-[1px] py-[25px] border-[#f3f4f522] mx-auto px-[32px] flex flex-wrap md:flex-nowrap justify-between items-start text-[#fff]">

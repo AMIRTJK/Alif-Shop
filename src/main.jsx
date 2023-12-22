@@ -12,6 +12,7 @@ import Home from "./routes/Home.jsx";
 import Cart from "./routes/Cart.jsx";
 import Catalog from "./routes/Catalog.jsx";
 import Sign from "./routes/Sign.jsx";
+import Product from "./routes/Product.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "catalog",
         element: <Catalog />,
+      },
+      {
+        path: "product/:id",
+        element: <Product />,
       },
     ],
   },
