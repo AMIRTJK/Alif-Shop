@@ -1,5 +1,4 @@
 import React from "react";
-import BasketButton from "../../icons/Product/BasketButton";
 const ShopList = (props) => {
   return (
     <li className="flex justify-between items-center border-y-[1px] py-[40px]">
@@ -47,10 +46,7 @@ const ShopList = (props) => {
         <p className="text-gray-500 text-[14px] font-[600]">Комиссия</p>
         <p className="font-bold">{props.commission}%</p>
       </div>
-      <button className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
-        <BasketButton />
-        <p>В корзину</p>
-      </button>
+      {props.children}
     </li>
   );
 };

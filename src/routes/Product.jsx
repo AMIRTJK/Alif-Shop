@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../api/Home/home";
+import { getProductsFromCart } from "../api/Product/product";
 import tvImage from "../assets/televizor-yasin-smart32-32dyuym-1665653449917-xl.webp";
 import { Close } from "@mui/icons-material";
+import BasketButton from "../icons/Product/BasketButton";
 
 import ShopList from "../component/Product/ShopList";
 
@@ -12,13 +14,18 @@ const Product = () => {
   const productId = parseInt(id);
   const dispatch = useDispatch();
   const dataGetProducts = useSelector((store) => store.home.dataGetProducts);
-  console.log(dataGetProducts);
+  const dataGetProductsFromCart = useSelector(
+    (store) => store.product.dataGetProductsFromCart
+  );
+
+  console.log(dataGetProductsFromCart);
 
   const [modalImage, setModalImage] = useState(false);
 
   // useEffect
   useEffect(() => {
     dispatch(getProducts());
+    dispatch(getProductsFromCart());
   }, [dispatch]);
   return (
     <main>
@@ -164,33 +171,56 @@ const Product = () => {
             </div>
           </div>
           <ul className="wrapper-shops-list mt-[30px]">
-            <ShopList
-              shop="Arzon Shop"
-              discount="-36%"
-              price="1 210"
-              priceStock="1 900"
-              termPrice="69"
-              termMonth="24"
-              commission="37"
-            />
-            <ShopList
-              shop="Uyutniy Dom"
-              discount="-36%"
-              price="1 127"
-              priceStock="1 840"
-              termPrice="63"
-              termMonth="24"
-              commission="37"
-            />
-            <ShopList
-              shop="Kushoniyon 902"
-              discount="-36%"
-              price="1 360"
-              priceStock="1 724"
-              termPrice="74"
-              termMonth="24"
-              commission="30"
-            />
+            {dataGetProducts.map((e) => {
+              if (e.id === productId) {
+                return (
+                  <div key={e.id}>
+                    <ShopList
+                      shop="Arzon Shop"
+                      discount="-36%"
+                      price={e.price}
+                      priceStock={e.price * 1.09}
+                      termPrice={Math.floor(e.price / 24)}
+                      termMonth="24"
+                      commission="37"
+                    >
+                      <button className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
+                        <BasketButton />
+                        <p>В корзину</p>
+                      </button>
+                    </ShopList>
+                    <ShopList
+                      shop="Uyutniy Dom"
+                      discount="-36%"
+                      price={Math.round(e.price / 1.02)}
+                      priceStock={e.price * 1.06}
+                      termPrice={Math.floor(e.price / 1.02 / 24)}
+                      termMonth="24"
+                      commission="37"
+                    >
+                      <button className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
+                        <BasketButton />
+                        <p>В корзину</p>
+                      </button>
+                    </ShopList>
+                    <ShopList
+                      shop="Kushoniyon 902"
+                      discount="-36%"
+                      price={Math.round(e.price / 1.01)}
+                      priceStock={e.price * 1.03}
+                      termPrice={Math.floor(e.price / 1.01 / 24)}
+                      termMonth="24"
+                      commission="37"
+                    >
+                      <button className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
+                        <BasketButton />
+                        <p>В корзину</p>
+                      </button>
+                    </ShopList>
+                  </div>
+                );
+              }
+            })}
           </ul>
         </div>
       </div>
