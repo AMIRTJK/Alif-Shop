@@ -111,7 +111,7 @@ const Root = () => {
                         return (
                           <i
                             key={e.id + 1}
-                            className="absolute top-0 right-0 text-[red] font-[500]"
+                            className="absolute bottom-[80%] left-[60%] text-[#fff] font-[500] text-[10px] bg-[red] px-[9px] rounded-lg"
                           >
                             {e.productsInCart.length}
                           </i>
