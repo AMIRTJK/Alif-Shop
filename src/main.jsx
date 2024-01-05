@@ -13,10 +13,15 @@ import Cart from "./routes/Cart.jsx";
 import Catalog from "./routes/Catalog.jsx";
 import Sign from "./routes/Sign.jsx";
 import Product from "./routes/Product.jsx";
+import Login from "./routes/Login.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Login />,
+  },
+  {
+    path: "/basic",
     element: <Root />,
     errorElement: <ErrorPages />,
     children: [

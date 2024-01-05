@@ -25,9 +25,13 @@ import { Link } from "react-router-dom";
 import { getCategories, getProducts } from "../api/Home/home";
 // Redux Hook
 import { useDispatch, useSelector } from "react-redux";
+import { getToken } from "../utils/token";
+
 // Reducers State Functions
 
 const Home = () => {
+  const myToken = getToken();
+  console.log(myToken);
   let monthPrice = null;
 
   const dispatch = useDispatch();
@@ -36,6 +40,7 @@ const Home = () => {
     (store) => store.home.dataGetCategories
   );
   const dataGetProducts = useSelector((store) => store.home.dataGetProducts);
+  console.log(dataGetProducts);
   // useEffect
   useEffect(() => {
     dispatch(getCategories());
@@ -177,7 +182,7 @@ const Home = () => {
                 {dataGetProducts.map((e) => {
                   return (
                     <SwiperSlide key={e.id}>
-                      <Link to={`/product/${e.id}`}>
+                      <Link to={`/basic/product/${e.id}`}>
                         <div className="items flex flex-col items-center md:items-start gap-[20px] cursor-pointer py-[25px]">
                           <div className="wrapper-image">
                             <img src="src/assets/obogrev.webp" alt="" />

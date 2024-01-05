@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { axiosRequest } from "../../utils/axiosRequest";
 
 //GET QUERY - Get Products From Cart
 
@@ -7,9 +7,7 @@ export const getProductsFromCart = createAsyncThunk(
   "product/getProductsFromCart",
   async function (_, { rejectWithValue }) {
     try {
-      const { data } = await axios.get(
-        "http://65.108.148.136:8072/Cart/get-products-from-cart"
-      );
+      const { data } = await axiosRequest.get("Cart/get-products-from-cart");
       console.log(data.data);
       return data.data;
     } catch (error) {

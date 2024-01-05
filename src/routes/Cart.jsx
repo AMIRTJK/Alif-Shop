@@ -13,7 +13,7 @@ const Cart = () => {
         <p className="font-[500]">
           Перейдите в раздел с товарами, чтобы оставить заявку
         </p>
-        <Link to="/catalog">
+        <Link to="/basic/catalog">
           <button className="bg-[#ffbe1f] text-center py-[16px] px-[32px] rounded-lg font-[500]">
             Перейти в раздел
           </button>

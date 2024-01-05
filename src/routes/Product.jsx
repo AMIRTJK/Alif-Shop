@@ -6,6 +6,7 @@ import { getProductsFromCart } from "../api/Product/product";
 import tvImage from "../assets/televizor-yasin-smart32-32dyuym-1665653449917-xl.webp";
 import { Close } from "@mui/icons-material";
 import BasketButton from "../icons/Product/BasketButton";
+import { getToken } from "../utils/token";
 
 import ShopList from "../component/Product/ShopList";
 
@@ -21,6 +22,9 @@ const Product = () => {
   console.log(dataGetProductsFromCart);
 
   const [modalImage, setModalImage] = useState(false);
+
+  const myToken = getToken();
+  console.log(myToken);
 
   // useEffect
   useEffect(() => {

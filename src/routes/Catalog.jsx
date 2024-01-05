@@ -39,7 +39,10 @@ const Catalog = () => {
                 <div className="wrapper-list  flex flex-wrap gap-[5px]">
                   {e.subCategories.map((el) => {
                     return (
-                      <p className="text-[13px] font-[600] text-[#73787d] hover:text-[#ffbe1f] cursor-pointer">
+                      <p
+                        key={el.id}
+                        className="text-[13px] font-[600] text-[#73787d] hover:text-[#ffbe1f] cursor-pointer"
+                      >
                         {el.subCategoryName + ","}
                       </p>
                     );

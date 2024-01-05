@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { axiosRequest } from "../../utils/axiosRequest";
 
 // GET QUERY
 
@@ -7,9 +7,7 @@ export const getCategories = createAsyncThunk(
   "home/getCategories",
   async function (_, rejectWithValue) {
     try {
-      const { data } = await axios.get(
-        "http://65.108.148.136:8072/Category/get-categories"
-      );
+      const { data } = await axiosRequest.get("Category/get-categories");
       return data.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -23,9 +21,7 @@ export const getProducts = createAsyncThunk(
   "home/getProducts",
   async function (_, rejectWithValue) {
     try {
-      const { data } = await axios.get(
-        "http://65.108.148.136:8072/Product/get-products"
-      );
+      const { data } = await axiosRequest.get("Product/get-products");
       return data.data.products;
     } catch (error) {
       return rejectWithValue(error);

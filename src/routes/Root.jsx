@@ -39,7 +39,7 @@ const Root = () => {
         <div className="main-header bg-[#fff] w-full h-[30px] mb-[100px]">
           <header className="fixed bg-[#fff] z-40 w-full py-[24px] border-b-[1px] mb-[24px]">
             <nav className="menu-category max-w-[1192px] px-[32px] gap-[10px] mx-auto flex items-center justify-between">
-              <Link to="/">
+              <Link to="/basic">
                 <LogoHeader />
               </Link>
               <button
