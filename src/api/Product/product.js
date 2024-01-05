@@ -8,7 +8,6 @@ export const getProductsFromCart = createAsyncThunk(
   async function (_, { rejectWithValue }) {
     try {
       const { data } = await axiosRequest.get("Cart/get-products-from-cart");
-      console.log(data.data);
       return data.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -16,18 +15,18 @@ export const getProductsFromCart = createAsyncThunk(
   }
 );
 
-// // POST Add Product To Cart
-// export const addProductToCard = createAsyncThunk(
-//   "product/addProductToCard",
-//   async function (clickedId, { dispatch, rejectWithValue }) {
-//     try {
-//       const { data } = await axios.post(
-//         `http://65.108.148.136:8072/Cart/add-product-to-cart?id=${clickedId}`
-//       );
-//       dispatch(getProductsFromCart());
-//       return data.data;
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+// POST Add Product To Cart
+export const addProductToCart = createAsyncThunk(
+  "product/addProductToCart",
+  async function (clickedId, { dispatch, rejectWithValue }) {
+    try {
+      const { data } = await axios.post(
+        `Cart/add-product-to-cart?id=${clickedId}`
+      );
+      dispatch(getProductsFromCart());
+      return data.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

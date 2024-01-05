@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   //   addProductToCard,
   getProductsFromCart,
+  addProductToCart,
 } from "../../api/Product/product";
 
 const initialState = {
@@ -25,17 +26,17 @@ export const productSlice = createSlice({
     builder.addCase(getProductsFromCart.rejected, (state, action) => {
       state.loading = false;
     });
-    // // POST Add Product To Cart
-    // builder.addCase(addProductToCard.pending, (state, action) => {
-    //   state.loading = true;
-    // });
-    // builder.addCase(addProductToCard.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.dataGetProductsFromCart = action.payload;
-    // });
-    // builder.addCase(addProductToCard.rejected, (state, action) => {
-    //   state.loading = false;
-    // });
+    // POST Add Product To Cart
+    builder.addCase(addProductToCart.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(addProductToCart.fulfilled, (state, action) => {
+      state.loading = false;
+      state.dataGetProductsFromCart = action.payload;
+    });
+    builder.addCase(addProductToCart.rejected, (state, action) => {
+      state.loading = false;
+    });
   },
 });
 

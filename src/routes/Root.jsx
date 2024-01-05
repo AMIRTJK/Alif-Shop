@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +11,8 @@ import Search from "../icons/Layout/Search";
 import Location from "../icons/Layout/Location";
 import Sign from "../icons/Layout/Sign";
 import Basket from "../icons/Layout/Basket";
+
+import { getProductsFromCart } from "../api/Product/product";
 
 // COMPONENTS ================
 import Category from "../component/Home/Category";
@@ -33,6 +35,14 @@ const Root = () => {
   const dispatch = useDispatch();
   const [menu, setMenu] = useState(true);
   const [showCategory, setShowCategory] = useState(false);
+  const dataGetProductsFromCart = useSelector(
+    (store) => store.product.dataGetProductsFromCart
+  );
+  console.log(dataGetProductsFromCart);
+
+  useEffect(() => {
+    getProductsFromCart();
+  }, []);
   return (
     <>
       <main>
@@ -91,11 +101,23 @@ const Root = () => {
                 {/* Modal Sign */}
                 <SignModal />
                 <Link to="cart">
-                  <button className="item flex flex-col items-center gap-[2px]">
+                  <button className="item flex flex-col items-center gap-[2px] relative">
                     <Basket />
                     <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
                       Корзина
                     </p>
+                    {dataGetProductsFromCart.map((e) => {
+                      if (e.productsInCart.length > 0) {
+                        return (
+                          <i
+                            key={e.id + 1}
+                            className="absolute top-0 right-0 text-[red] font-[500]"
+                          >
+                            {e.productsInCart.length}
+                          </i>
+                        );
+                      }
+                    })}
                   </button>
                 </Link>
               </div>

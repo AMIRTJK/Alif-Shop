@@ -31,7 +31,6 @@ import { getToken } from "../utils/token";
 
 const Home = () => {
   const myToken = getToken();
-  console.log(myToken);
   let monthPrice = null;
 
   const dispatch = useDispatch();
@@ -116,48 +115,57 @@ const Home = () => {
                 modules={[Navigation, Pagination, Mousewheel, Keyboard]}
               >
                 {dataGetProducts.map((e) => {
-                  return (
-                    <SwiperSlide key={e.id}>
-                      <Link to={`product/${e.id}`}>
-                        <div className="items flex flex-col items-center md:items-start gap-[20px] cursor-pointer py-[25px]">
-                          <div className="wrapper-image">
-                            <img src="src/assets/tv.webp" alt="" />
+                  if (e.hasDiscount === true) {
+                    return (
+                      <SwiperSlide key={e.id}>
+                        <Link to={`product/${e.id}`}>
+                          <div className="items flex flex-col items-center md:items-start gap-[20px] cursor-pointer py-[25px]">
+                            <div className="wrapper-image">
+                              <img
+                                src={`${import.meta.env.VITE_APP_FILES_URL}${
+                                  e.image
+                                }`}
+                                alt=""
+                              />
+                            </div>
+                            <div className="wrapper-content flex flex-col items-start gap-[5px]">
+                              <div className="discounts flex items-center gap-[5px]">
+                                <p className="bg-[#ff0000c7] rounded-lg py-[2.5px] px-[10px] text-[#fff] text-[11px] font-[600]">
+                                  {"-" + e.discountPrice + "%"}
+                                </p>
+                                <p className="bg-[#0059ffd2] rounded-lg py-[2.5px] px-[10px] text-[#fff] text-[12px] font-[600]">
+                                  +Подарок
+                                </p>
+                              </div>
+                              <div className="price flex items-start gap-[5px]">
+                                <p className="text-[16px] font-bold">
+                                  {e.price}
+                                </p>
+                                <p className="text-[14px] text-[#9ba1a7] font-[600]">
+                                  {e.price * 1.067}
+                                </p>
+                              </div>
+                              <div className="month flex items-start gap-[5px]">
+                                <p className="font-[500] text-[#9ba1a7] text-[14px]">
+                                  {Math.floor(e.price / 24)}
+                                </p>
+                                <p className="font-[500] text-[#9ba1a7] text-[14px]">
+                                  x24 мес
+                                </p>
+                              </div>
+                              <p className="title text-[14px] font-[600] text-left">
+                                {e.productName}
+                              </p>
+                              <button className="flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
+                                <BasketButton />
+                                <p>В корзину</p>
+                              </button>
+                            </div>
                           </div>
-                          <div className="wrapper-content flex flex-col items-start gap-[5px]">
-                            <div className="discounts flex items-center gap-[5px]">
-                              <p className="bg-[#ff0000c7] rounded-lg py-[2.5px] px-[10px] text-[#fff] text-[11px] font-[600]">
-                                {"-" + e.discountPrice + "%"}
-                              </p>
-                              <p className="bg-[#0059ffd2] rounded-lg py-[2.5px] px-[10px] text-[#fff] text-[12px] font-[600]">
-                                +Подарок
-                              </p>
-                            </div>
-                            <div className="price flex items-start gap-[5px]">
-                              <p className="text-[16px] font-bold">{e.price}</p>
-                              <p className="text-[14px] text-[#9ba1a7] font-[600]">
-                                {e.price * 1.067}
-                              </p>
-                            </div>
-                            <div className="month flex items-start gap-[5px]">
-                              <p className="font-[500] text-[#9ba1a7] text-[14px]">
-                                {Math.floor(e.price / 24)}
-                              </p>
-                              <p className="font-[500] text-[#9ba1a7] text-[14px]">
-                                x24 мес
-                              </p>
-                            </div>
-                            <p className="title text-[14px] font-[600]">
-                              {e.productName}
-                            </p>
-                            <button className="flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
-                              <BasketButton />
-                              <p>В корзину</p>
-                            </button>
-                          </div>
-                        </div>
-                      </Link>
-                    </SwiperSlide>
-                  );
+                        </Link>
+                      </SwiperSlide>
+                    );
+                  }
                 })}
               </Swiper>
             </div>
@@ -185,7 +193,12 @@ const Home = () => {
                       <Link to={`/basic/product/${e.id}`}>
                         <div className="items flex flex-col items-center md:items-start gap-[20px] cursor-pointer py-[25px]">
                           <div className="wrapper-image">
-                            <img src="src/assets/obogrev.webp" alt="" />
+                            <img
+                              src={`${import.meta.env.VITE_APP_FILES_URL}${
+                                e.image
+                              }`}
+                              alt=""
+                            />
                           </div>
                           <div className="wrapper-content flex flex-col items-start gap-[5px]">
                             <div className="price flex items-start gap-[5px]">
@@ -202,7 +215,7 @@ const Home = () => {
                                 x24 мес
                               </p>
                             </div>
-                            <p className="title text-[14px] font-[600]">
+                            <p className="title text-left text-[14px] font-[600]">
                               {e.productName}
                             </p>
                             <button className="flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">

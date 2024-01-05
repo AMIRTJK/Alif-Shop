@@ -8,6 +8,8 @@ import { Close } from "@mui/icons-material";
 import BasketButton from "../icons/Product/BasketButton";
 import { getToken } from "../utils/token";
 
+import { addProductToCart } from "../api/Product/product";
+
 import ShopList from "../component/Product/ShopList";
 
 const Product = () => {
@@ -24,7 +26,6 @@ const Product = () => {
   const [modalImage, setModalImage] = useState(false);
 
   const myToken = getToken();
-  console.log(myToken);
 
   // useEffect
   useEffect(() => {
@@ -43,7 +44,17 @@ const Product = () => {
               onClick={() => setModalImage(true)}
               className="wrapper-image cursor-pointer"
             >
-              <img src={tvImage} alt="" />
+              {dataGetProducts.map((e) => {
+                if (e.id === productId) {
+                  return (
+                    <img
+                      key={e.id}
+                      src={`${import.meta.env.VITE_APP_FILES_URL}${e.image}`}
+                      alt=""
+                    />
+                  );
+                }
+              })}
             </div>
             <div
               className={`${
@@ -53,7 +64,18 @@ const Product = () => {
               <button onClick={() => setModalImage(false)}>
                 <Close className="absolute right-[1%] top-[2%] hover:text-[#ffbe1f] cursor-pointer" />
               </button>
-              <img src={tvImage} alt="" className="w-[50%] cursor-pointer" />
+              {dataGetProducts.map((e) => {
+                if (e.id === productId) {
+                  return (
+                    <img
+                      key={e.id}
+                      className="w-[50%] cursor-pointer"
+                      src={`${import.meta.env.VITE_APP_FILES_URL}${e.image}`}
+                      alt=""
+                    />
+                  );
+                }
+              })}
             </div>
           </aside>
           <aside className="right">
@@ -90,7 +112,7 @@ const Product = () => {
                     </div>
                     <ul className="wrapper-description flex flex-col gap-[10px]">
                       <li>
-                        <p className="text-gray-500 txet-[#73787d] font-[500]">
+                        <p className="text-gray-500  font-[500]">
                           Диагональ{" "}
                           <span className="text-[#000]">32 дюйм.</span>
                         </p>
@@ -188,7 +210,13 @@ const Product = () => {
                       termMonth="24"
                       commission="37"
                     >
-                      <button className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
+                      <button
+                        onClick={() => {
+                          addProductToCart(e.id);
+                          console.log(e.id);
+                        }}
+                        className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer"
+                      >
                         <BasketButton />
                         <p>В корзину</p>
                       </button>
@@ -202,7 +230,10 @@ const Product = () => {
                       termMonth="24"
                       commission="37"
                     >
-                      <button className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
+                      <button
+                        onClick={() => addProductToCart(e)}
+                        className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer"
+                      >
                         <BasketButton />
                         <p>В корзину</p>
                       </button>
@@ -216,7 +247,10 @@ const Product = () => {
                       termMonth="24"
                       commission="37"
                     >
-                      <button className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer">
+                      <button
+                        onClick={() => addProductToCart(e)}
+                        className="card flex items-center gap-[10px] bg-[#ffbe1f] px-[16px] py-[8px] rounded-lg text-[14px] font-[600] hover:bg-[#ffc01f80] cursor-pointer"
+                      >
                         <BasketButton />
                         <p>В корзину</p>
                       </button>
