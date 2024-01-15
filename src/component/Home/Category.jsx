@@ -22,8 +22,8 @@ const Category = (props) => {
         props.modal ? "block" : "hidden"
       } modal-category w-full h-[100vh] fixed bg-[#00000071] mt-[24px]`}
     >
-      <div className="wrapper flex items-start gap-[25px] bg-[#fff] ]">
-        <div className="aside-left overflow-hidden py-[40px] flex justify-end items-center w-[38%] bg-[#ebebeb] h-[80vh]">
+      <div className="wrapper flex items-start gap-[25px] bg-[#fff]">
+        <div className="aside-left overflow-hidden py-[40px] flex justify-end items-center w-[38%] bg-[#f3f4f5] h-[80vh]">
           <ul className="category-scrollbar w-[50%] overflow-auto h-[100%]">
             {dataGetCategories.map((e) => {
               return (
