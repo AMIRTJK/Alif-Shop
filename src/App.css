@@ -48,6 +48,13 @@ button.active {
   align-items: center;
 }
 
+.swiper-button-next {
+  background-color: red;
+  padding: 30px;
+  border-radius: 50px;
+  background-color: #fff;
+}
+
 .swiper-slide img {
   display: block;
   width: 100%;
