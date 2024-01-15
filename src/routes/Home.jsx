@@ -84,8 +84,13 @@ const Home = () => {
                   key={e.id}
                   className="item md:w-[15%] w-[40%] flex flex-col items-center gap-[5px] hover:text-[#ffbe1f] cursor-pointer"
                 >
-                  <div className="wrapper-image">
-                    <img src="src/assets/category-image-1.jpg" alt="" />
+                  <div className="wrapper-image w-[125px] h-[125px] bg-[#f7f8fa] rounded-[62.5px] flex justify-center items-center">
+                    <img
+                      src={`${import.meta.env.VITE_APP_FILES_URL}${
+                        e.categoryImage
+                      }`}
+                      alt=""
+                    />
                   </div>
                   <div className="wrapper-text">
                     <p className="font-[600] text-center">{e.categoryName}</p>
