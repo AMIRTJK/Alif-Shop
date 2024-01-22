@@ -7,6 +7,7 @@ import tvImage from "../assets/televizor-yasin-smart32-32dyuym-1665653449917-xl.
 import { Close } from "@mui/icons-material";
 import BasketButton from "../icons/Product/BasketButton";
 import { getToken } from "../utils/token";
+import { getProductById } from "../api/Product/product";
 
 import { addProductToCart } from "../api/Product/product";
 
@@ -21,14 +22,13 @@ const Product = () => {
     (store) => store.product.dataGetProductsFromCart
   );
 
-  console.log(dataGetProductsFromCart);
-
   const [modalImage, setModalImage] = useState(false);
 
   const myToken = getToken();
 
   // useEffect
   useEffect(() => {
+    dispatch(getProductById(productId));
     dispatch(getProducts());
     dispatch(getProductsFromCart());
   }, [dispatch]);

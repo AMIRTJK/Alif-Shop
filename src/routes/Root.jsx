@@ -15,7 +15,7 @@ import Basket from "../icons/Layout/Basket";
 import { getProductsFromCart } from "../api/Product/product";
 
 // COMPONENTS ================
-import Category from "../component/Home/Category";
+import ComponentCategory from "../component/Home/ComponentCategory";
 
 // IMAGE
 import facebook from "../assets/facebook.svg";
@@ -31,6 +31,8 @@ import SignModal from "../component/Home/SignModal";
 // Import Reducers
 import { setLocationModal, setSignModal } from "../reducers/Home/home";
 
+import { getToken } from "../utils/token";
+
 const Root = () => {
   const dispatch = useDispatch();
   const [menu, setMenu] = useState(true);
@@ -38,7 +40,8 @@ const Root = () => {
   const dataGetProductsFromCart = useSelector(
     (store) => store.product.dataGetProductsFromCart
   );
-  console.log(dataGetProductsFromCart);
+
+  const myToken = getToken();
 
   useEffect(() => {
     getProductsFromCart();
@@ -87,17 +90,28 @@ const Root = () => {
                 </button>
                 {/* Modal Location */}
                 <LocationModal />
-                <button
-                  onClick={() => {
-                    dispatch(setSignModal(true));
-                  }}
-                  className="item flex flex-col items-center gap-[2px]"
-                >
-                  <Sign />
-                  <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
-                    Войти
-                  </p>
-                </button>
+                {myToken ? (
+                  <button className="item flex flex-col items-center gap-[2px]">
+                    <Sign />
+                    <Link to="profile/orders">
+                      <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
+                        Профиль
+                      </p>
+                    </Link>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      dispatch(setSignModal(true));
+                    }}
+                    className="item flex flex-col items-center gap-[2px]"
+                  >
+                    <Sign />
+                    <p className="text-[12px] text-[#73787d] font-[600] hover:text-[#ffbe1f]">
+                      Войти
+                    </p>
+                  </button>
+                )}
                 {/* Modal Sign */}
                 <SignModal />
                 <Link to="cart">
@@ -122,7 +136,7 @@ const Root = () => {
                 </Link>
               </div>
             </nav>
-            <Category modal={showCategory} />
+            <ComponentCategory modal={showCategory} set={setShowCategory} />
           </header>
         </div>
         <Outlet />

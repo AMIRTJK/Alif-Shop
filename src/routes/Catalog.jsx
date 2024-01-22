@@ -6,13 +6,14 @@ import { getCategories, getProducts } from "../api/Home/home";
 import { useDispatch, useSelector } from "react-redux";
 // Reducers State Functions
 
+import { Link } from "react-router-dom";
+
 const Catalog = () => {
   const dispatch = useDispatch();
   // Reducers
   const dataGetCategories = useSelector(
     (store) => store.home.dataGetCategories
   );
-  console.log(dataGetCategories);
 
   // useEffect
   useEffect(() => {
@@ -30,21 +31,30 @@ const Catalog = () => {
               className="item w-[18%] flex flex-col items-start justify-center gap-[20px]"
             >
               <div className="wrapper-image">
-                <img src="src/assets/category-image-2.jpg" alt="" />
+                <img
+                  src={`${import.meta.env.VITE_APP_FILES_URL}${
+                    e.categoryImage
+                  }`}
+                  alt=""
+                />
               </div>
               <div className="wrapper-text flex flex-col gap-[10px]">
-                <p className="font-[600] hover:text-[#ffbe1f] cursor-pointer">
-                  {e.categoryName}
-                </p>
+                <Link to="/basic/category/:category">
+                  <p className="font-[600] hover:text-[#ffbe1f] cursor-pointer">
+                    {e.categoryName}
+                  </p>
+                </Link>
                 <div className="wrapper-list  flex flex-wrap gap-[5px]">
                   {e.subCategories.map((el) => {
                     return (
-                      <p
-                        key={el.id}
-                        className="text-[13px] font-[600] text-[#73787d] hover:text-[#ffbe1f] cursor-pointer"
-                      >
-                        {el.subCategoryName + ","}
-                      </p>
+                      <Link to="/basic/category/:category">
+                        <p
+                          key={el.id}
+                          className="text-[13px] font-[600] text-[#73787d] hover:text-[#ffbe1f] cursor-pointer"
+                        >
+                          {el.subCategoryName + ","}
+                        </p>
+                      </Link>
                     );
                   })}
                 </div>

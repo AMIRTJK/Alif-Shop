@@ -15,7 +15,7 @@ export const getCategories = createAsyncThunk(
   }
 );
 
-// API getProducts не рабочая, скоро исправят, вместо этого на время использую апишку SubCategory
+// GET - getProducts
 
 export const getProducts = createAsyncThunk(
   "home/getProducts",
@@ -28,3 +28,4 @@ export const getProducts = createAsyncThunk(
     }
   }
 );
+

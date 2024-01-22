@@ -14,6 +14,8 @@ import Catalog from "./routes/Catalog.jsx";
 import Sign from "./routes/Sign.jsx";
 import Product from "./routes/Product.jsx";
 import Login from "./routes/Login.jsx";
+import Category from "./routes/Category.jsx";
+import Profile from "./routes/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "product/:id",
         element: <Product />,
+      },
+      {
+        path: "category/:id",
+        element: <Category />,
+      },
+      {
+        path: "profile/:orders",
+        element: <Profile />,
       },
     ],
   },

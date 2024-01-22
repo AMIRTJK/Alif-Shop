@@ -39,7 +39,7 @@ const Home = () => {
     (store) => store.home.dataGetCategories
   );
   const dataGetProducts = useSelector((store) => store.home.dataGetProducts);
-  console.log(dataGetProducts);
+
   // useEffect
   useEffect(() => {
     dispatch(getCategories());
@@ -125,7 +125,7 @@ const Home = () => {
                       <SwiperSlide key={e.id}>
                         <Link to={`product/${e.id}`}>
                           <div className="items flex flex-col items-center md:items-start gap-[20px] cursor-pointer py-[25px]">
-                            <div className="wrapper-image">
+                            <div className="wrapper-image h-[225px]">
                               <img
                                 src={`${import.meta.env.VITE_APP_FILES_URL}${
                                   e.image
@@ -176,7 +176,15 @@ const Home = () => {
             </div>
             {/* Обогреватели */}
             <div className="wrapper-text flex gap-[10px] items-center">
-              <h3 className="main-title">Обогреватели</h3>
+              {dataGetCategories.map((e) => {
+                if (e.categoryName === "Смартфоны и планшеты") {
+                  return (
+                    <h3 key={e.id} className="main-title">
+                      {e.categoryName}
+                    </h3>
+                  );
+                }
+              })}
               <p className="text-[#3e75a8] font-[600] hover:text-[#ffbe1f] cursor-pointer">
                 Смотреть все
               </p>
@@ -197,7 +205,7 @@ const Home = () => {
                     <SwiperSlide key={e.id}>
                       <Link to={`/basic/product/${e.id}`}>
                         <div className="items flex flex-col items-center md:items-start gap-[20px] cursor-pointer py-[25px]">
-                          <div className="wrapper-image">
+                          <div className="wrapper-image h-[225px]">
                             <img
                               src={`${import.meta.env.VITE_APP_FILES_URL}${
                                 e.image

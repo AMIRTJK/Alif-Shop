@@ -3,10 +3,12 @@ import {
   //   addProductToCard,
   getProductsFromCart,
   addProductToCart,
+  getProductById,
 } from "../../api/Product/product";
 
 const initialState = {
   loading: false,
+  dataGetProductById: [],
   dataGetProductsFromCart: [],
 };
 
@@ -15,6 +17,17 @@ export const productSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // Get Products By Id
+    builder.addCase(getProductById.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(getProductById.fulfilled, (state, action) => {
+      state.loading = false;
+      state.dataGetProductById = action.payload;
+    });
+    builder.addCase(getProductById.rejected, (state, action) => {
+      state.loading = false;
+    });
     // Get Products From Cart
     builder.addCase(getProductsFromCart.pending, (state, action) => {
       state.loading = true;
